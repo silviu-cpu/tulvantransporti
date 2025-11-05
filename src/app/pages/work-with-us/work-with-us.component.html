@@ -25,14 +25,19 @@
             company that values safety, punctuality, and reliability.
           </p>
 
-          <form class="flex-grow-1 d-flex flex-column justify-content-between">
+          <form
+            class="flex-grow-1 d-flex flex-column justify-content-between"
+            (submit)="sendEmail($event, 'driver')"
+          >
             <div>
               <div class="mb-3">
                 <label class="form-label text-white">Full Name</label>
                 <input
                   type="text"
+                  name="name"
                   class="form-control bg-transparent text-white"
                   placeholder="Enter your name"
+                  required
                 />
               </div>
 
@@ -40,26 +45,32 @@
                 <label class="form-label text-white">Email</label>
                 <input
                   type="email"
+                  name="email"
                   class="form-control bg-transparent text-white"
                   placeholder="Enter your email"
+                  required
                 />
               </div>
 
               <div class="mb-3">
-                <label class="form-label text-white">Experience (Years)</label>
+                <label class="form-label text-white">Phone Number</label>
                 <input
-                  type="number"
+                  type="text"
+                  name="phone"
                   class="form-control bg-transparent text-white"
-                  placeholder="e.g. 5"
+                  placeholder="+39 059 123 4567"
+                  required
                 />
               </div>
 
               <div class="mb-3">
                 <label class="form-label text-white">Message</label>
                 <textarea
+                  name="message"
                   rows="4"
                   class="form-control bg-transparent text-white"
-                  placeholder="Tell us about your experience..."
+                  placeholder="Tell us about yourself..."
+                  required
                 ></textarea>
               </div>
             </div>
@@ -67,9 +78,17 @@
             <button
               type="submit"
               class="btn btn-primary btn-lg px-4 mt-3 align-self-start"
+              [disabled]="sending"
             >
-              Apply Now
+              {{ sending ? "Sending..." : "Apply Now" }}
             </button>
+
+            <div *ngIf="successMessage" class="alert alert-success mt-3">
+              {{ successMessage }}
+            </div>
+            <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+              {{ errorMessage }}
+            </div>
           </form>
         </div>
       </div>
@@ -105,14 +124,19 @@
             long-term collaboration.
           </p>
 
-          <form class="flex-grow-1 d-flex flex-column justify-content-between">
+          <form
+            class="flex-grow-1 d-flex flex-column justify-content-between"
+            (submit)="sendEmail($event, 'business')"
+          >
             <div>
               <div class="mb-3">
                 <label class="form-label text-white">Company Name</label>
                 <input
                   type="text"
+                  name="company"
                   class="form-control bg-transparent text-white"
                   placeholder="Enter your company name"
+                  required
                 />
               </div>
 
@@ -120,8 +144,10 @@
                 <label class="form-label text-white">Email</label>
                 <input
                   type="email"
+                  name="email"
                   class="form-control bg-transparent text-white"
                   placeholder="Enter your email"
+                  required
                 />
               </div>
 
@@ -129,6 +155,7 @@
                 <label class="form-label text-white">Phone</label>
                 <input
                   type="text"
+                  name="phone"
                   class="form-control bg-transparent text-white"
                   placeholder="+39 059 123 4567"
                 />
@@ -137,9 +164,11 @@
               <div class="mb-3">
                 <label class="form-label text-white">Message</label>
                 <textarea
+                  name="message"
                   rows="4"
                   class="form-control bg-transparent text-white"
                   placeholder="Describe your logistics needs..."
+                  required
                 ></textarea>
               </div>
             </div>
@@ -147,9 +176,17 @@
             <button
               type="submit"
               class="btn btn-primary btn-lg px-4 mt-3 align-self-start"
+              [disabled]="sending"
             >
-              Send Request
+              {{ sending ? "Sending..." : "Send Request" }}
             </button>
+
+            <div *ngIf="successMessage" class="alert alert-success mt-3">
+              {{ successMessage }}
+            </div>
+            <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+              {{ errorMessage }}
+            </div>
           </form>
         </div>
       </div>
