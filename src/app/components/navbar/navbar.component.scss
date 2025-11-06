@@ -4,13 +4,14 @@
 }
 
 .navbar-scrolled {
-  background-color: white !important;
+  background-color: #1f1f1f !important;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  color: white !important;
 }
 
 .navbar-scrolled .nav-link,
 .navbar-scrolled .navbar-brand {
-  color: #000 !important;
+  color: white !important;
 }
 
 .navbar .nav-link.active-link {
