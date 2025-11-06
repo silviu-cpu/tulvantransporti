@@ -8,18 +8,30 @@ import { environment } from '../../../envinronments/environments';
   styleUrls: ['./work-with-us.component.scss'],
 })
 export class WorkWithUsComponent {
-  sending = false;
-  successMessage = '';
-  errorMessage = '';
+  // Separate states for each form
+  driverSending = false;
+  driverSuccess = '';
+  driverError = '';
 
-  // 📨 handle form submit (same logic for both forms)
+  businessSending = false;
+  businessSuccess = '';
+  businessError = '';
+
   sendEmail(event: Event, type: 'driver' | 'business') {
     event.preventDefault();
-    this.sending = true;
-    this.successMessage = '';
-    this.errorMessage = '';
 
     const form = event.target as HTMLFormElement;
+
+    // pick correct state
+    if (type === 'driver') {
+      this.driverSending = true;
+      this.driverSuccess = '';
+      this.driverError = '';
+    } else {
+      this.businessSending = true;
+      this.businessSuccess = '';
+      this.businessError = '';
+    }
 
     emailjs
       .sendForm(
@@ -29,19 +41,25 @@ export class WorkWithUsComponent {
         environment.emailjs.publicKey
       )
       .then(
-        (result: EmailJSResponseStatus) => {
-          console.log('✅ Email sent:', result.text);
-          this.sending = false;
-          this.successMessage =
-            type === 'driver'
-              ? 'Your driver application has been sent successfully!'
-              : 'Your business request has been sent successfully!';
+        () => {
+          if (type === 'driver') {
+            this.driverSending = false;
+            this.driverSuccess = 'Your application has been sent successfully!';
+          } else {
+            this.businessSending = false;
+            this.businessSuccess =
+              'Your business inquiry has been sent successfully!';
+          }
           form.reset();
         },
-        (error: { text: any }) => {
-          console.error('❌ Email error:', error.text);
-          this.sending = false;
-          this.errorMessage = 'Something went wrong. Please try again later.';
+        () => {
+          if (type === 'driver') {
+            this.driverSending = false;
+            this.driverError = 'Something went wrong. Please try again.';
+          } else {
+            this.businessSending = false;
+            this.businessError = 'Something went wrong. Please try again.';
+          }
         }
       );
   }

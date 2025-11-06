@@ -7,7 +7,7 @@
         <div class="image-wrapper position-relative w-100 h-100 rounded">
           <img
             src="/assets/cam5.jpg"
-            alt="Work with us as driver"
+            alt="Lavora con noi come autista"
             class="img-fluid rounded shadow-lg work-image"
           />
           <div class="overlay rounded"></div>
@@ -18,11 +18,11 @@
       <div class="col-lg-6 d-flex align-items-stretch">
         <div class="form-card p-4 d-flex flex-column justify-content-center">
           <h2 class="fw-bold mb-4">
-            Work with us <span class="text-primary">(as a Driver)</span>
+            Lavora con noi <span class="text-primary">(come Autista)</span>
           </h2>
           <p class="mb-4 text-light">
-            Join our dedicated team of professional drivers and be part of a
-            company that values safety, punctuality, and reliability.
+            Unisciti al nostro team di autisti professionisti e diventa parte di
+            un’azienda che valorizza sicurezza, puntualità e affidabilità.
           </p>
 
           <form
@@ -31,12 +31,12 @@
           >
             <div>
               <div class="mb-3">
-                <label class="form-label text-white">Full Name</label>
+                <label class="form-label text-white">Nome e Cognome</label>
                 <input
                   type="text"
                   name="name"
                   class="form-control bg-transparent text-white"
-                  placeholder="Enter your name"
+                  placeholder="Inserisci il tuo nome"
                   required
                 />
               </div>
@@ -47,13 +47,13 @@
                   type="email"
                   name="email"
                   class="form-control bg-transparent text-white"
-                  placeholder="Enter your email"
+                  placeholder="Inserisci la tua email"
                   required
                 />
               </div>
 
               <div class="mb-3">
-                <label class="form-label text-white">Phone Number</label>
+                <label class="form-label text-white">Numero di telefono</label>
                 <input
                   type="text"
                   name="phone"
@@ -64,12 +64,12 @@
               </div>
 
               <div class="mb-3">
-                <label class="form-label text-white">Message</label>
+                <label class="form-label text-white">Messaggio</label>
                 <textarea
                   name="message"
                   rows="4"
                   class="form-control bg-transparent text-white"
-                  placeholder="Tell us about yourself..."
+                  placeholder="Parlaci di te..."
                   required
                 ></textarea>
               </div>
@@ -77,17 +77,22 @@
 
             <button
               type="submit"
-              class="btn btn-primary btn-lg px-4 mt-3 align-self-start"
-              [disabled]="sending"
+              class="btn btn-primary btn-lg px-4 mt-3 align-self-start d-flex align-items-center gap-2"
+              [disabled]="driverSending"
             >
-              {{ sending ? "Sending..." : "Apply Now" }}
+              <span
+                *ngIf="driverSending"
+                class="spinner-border spinner-border-sm"
+                role="status"
+              ></span>
+              {{ driverSending ? "Invio in corso..." : "Invia candidatura" }}
             </button>
 
-            <div *ngIf="successMessage" class="alert alert-success mt-3">
-              {{ successMessage }}
+            <div *ngIf="driverSuccess" class="alert alert-success mt-3">
+              {{ driverSuccess }}
             </div>
-            <div *ngIf="errorMessage" class="alert alert-danger mt-3">
-              {{ errorMessage }}
+            <div *ngIf="driverError" class="alert alert-danger mt-3">
+              {{ driverError }}
             </div>
           </form>
         </div>
@@ -105,7 +110,7 @@
         <div class="image-wrapper position-relative w-100 h-70 rounded">
           <img
             src="/assets/cam4.jpg"
-            alt="Work with us as business"
+            alt="Lavora con noi come azienda"
             class="img-fluid rounded shadow-lg work-image"
           />
           <div class="overlay rounded"></div>
@@ -116,12 +121,12 @@
       <div class="col-lg-6 d-flex align-items-stretch">
         <div class="form-card p-4 d-flex flex-column justify-content-center">
           <h2 class="fw-bold mb-4">
-            Work with us <span class="text-primary">(as a Business)</span>
+            Lavora con noi <span class="text-primary">(come Azienda)</span>
           </h2>
           <p class="mb-4 text-light">
-            Partner with us and access reliable intermodal transport solutions
-            tailored to your company’s needs. We deliver efficiency, trust, and
-            long-term collaboration.
+            Collabora con noi e accedi a soluzioni di trasporto intermodale
+            affidabili, su misura per le esigenze della tua azienda. Offriamo
+            efficienza, fiducia e collaborazione a lungo termine.
           </p>
 
           <form
@@ -130,12 +135,12 @@
           >
             <div>
               <div class="mb-3">
-                <label class="form-label text-white">Company Name</label>
+                <label class="form-label text-white">Nome dell’Azienda</label>
                 <input
                   type="text"
                   name="company"
                   class="form-control bg-transparent text-white"
-                  placeholder="Enter your company name"
+                  placeholder="Inserisci il nome della tua azienda"
                   required
                 />
               </div>
@@ -146,13 +151,13 @@
                   type="email"
                   name="email"
                   class="form-control bg-transparent text-white"
-                  placeholder="Enter your email"
+                  placeholder="Inserisci la tua email"
                   required
                 />
               </div>
 
               <div class="mb-3">
-                <label class="form-label text-white">Phone</label>
+                <label class="form-label text-white">Telefono</label>
                 <input
                   type="text"
                   name="phone"
@@ -162,12 +167,12 @@
               </div>
 
               <div class="mb-3">
-                <label class="form-label text-white">Message</label>
+                <label class="form-label text-white">Messaggio</label>
                 <textarea
                   name="message"
                   rows="4"
                   class="form-control bg-transparent text-white"
-                  placeholder="Describe your logistics needs..."
+                  placeholder="Descrivi le tue esigenze logistiche..."
                   required
                 ></textarea>
               </div>
@@ -175,17 +180,22 @@
 
             <button
               type="submit"
-              class="btn btn-primary btn-lg px-4 mt-3 align-self-start"
-              [disabled]="sending"
+              class="btn btn-primary btn-lg px-4 mt-3 align-self-start d-flex align-items-center gap-2"
+              [disabled]="businessSending"
             >
-              {{ sending ? "Sending..." : "Send Request" }}
+              <span
+                *ngIf="businessSending"
+                class="spinner-border spinner-border-sm"
+                role="status"
+              ></span>
+              {{ businessSending ? "Invio in corso..." : "Invia richiesta" }}
             </button>
 
-            <div *ngIf="successMessage" class="alert alert-success mt-3">
-              {{ successMessage }}
+            <div *ngIf="businessSuccess" class="alert alert-success mt-3">
+              {{ businessSuccess }}
             </div>
-            <div *ngIf="errorMessage" class="alert alert-danger mt-3">
-              {{ errorMessage }}
+            <div *ngIf="businessError" class="alert alert-danger mt-3">
+              {{ businessError }}
             </div>
           </form>
         </div>
