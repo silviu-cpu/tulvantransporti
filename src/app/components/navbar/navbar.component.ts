@@ -1,35 +1,25 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
   isScrolled = false;
-  isHomePage = true;
+  menuOpen = false;
 
-  constructor(private router: Router) {}
-
-  ngOnInit(): void {
-    // Detect route changes
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.isHomePage = event.urlAfterRedirects === '/';
-        this.closeMenu(); // close after navigating
-      }
-    });
-  }
-
-  // Detect scroll for background color
   @HostListener('window:scroll', [])
   onWindowScroll() {
     this.isScrolled = window.scrollY > 50;
   }
 
-  // Collapse menu after clicking a link
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
+
   closeMenu() {
+    this.menuOpen = false;
     const navbar = document.getElementById('navbarNav');
     if (navbar?.classList.contains('show')) {
       navbar.classList.remove('show');

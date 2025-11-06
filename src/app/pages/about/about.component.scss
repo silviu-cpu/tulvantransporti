@@ -153,6 +153,10 @@
 }
 @media (max-width: 768px) {
   .about-hero {
-    padding-top: 100px;
+    padding-top: 120px;
+
+    .glass-card {
+      padding: 12px !important;
+    }
   }
 }
